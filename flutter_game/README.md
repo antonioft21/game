@@ -13,4 +13,4 @@ flutter run
 
 ## Gameplay
 
-Press **Start** and wait until the screen turns green, then tap as quickly as possible. Your reaction time is displayed and you can play again.
+Press **Start** and wait until the screen turns green, then tap as quickly as possible. Your reaction time is displayed and stored as a high score if it's your best so far.

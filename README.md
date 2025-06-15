@@ -9,4 +9,4 @@ flutter pub get
 flutter run
 ```
 
-The application measures how quickly you tap the screen once it turns green. It uses the `flutter_bloc` package to manage game state.
+The application measures how quickly you tap the screen once it turns green. It uses the `flutter_bloc` package to manage game state. Your best reaction time is stored locally so you can challenge yourself to improve.

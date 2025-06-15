@@ -3,12 +3,15 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'high_score_cubit.dart';
 
 part 'reaction_event.dart';
 part 'reaction_state.dart';
 
 class ReactionBloc extends Bloc<ReactionEvent, ReactionState> {
-  ReactionBloc() : super(const ReactionInitial()) {
+  final HighScoreCubit highScoreCubit;
+
+  ReactionBloc(this.highScoreCubit) : super(const ReactionInitial()) {
     on<StartGame>(_onStart);
     on<UserTapped>(_onTap);
     on<ResetGame>(_onReset);
@@ -29,6 +32,7 @@ class ReactionBloc extends Bloc<ReactionEvent, ReactionState> {
     if (state is ReactionRunning) {
       final reactionTime = DateTime.now().difference(_startTime);
       emit(ReactionResult(reactionTime));
+      unawaited(highScoreCubit.updateScore(reactionTime));
     }
   }
 

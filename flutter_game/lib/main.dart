@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/reaction_bloc.dart';
+import 'bloc/high_score_cubit.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -15,8 +16,11 @@ class ReactionGameApp extends StatelessWidget {
     return MaterialApp(
       title: 'Reaction Game',
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: BlocProvider(
-        create: (_) => ReactionBloc(),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => HighScoreCubit()),
+          BlocProvider(create: (context) => ReactionBloc(context.read<HighScoreCubit>())),
+        ],
         child: const HomeScreen(),
       ),
     );
